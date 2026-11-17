@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz | ICEBACK FOREX ACADEMY</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .quiz-container { max-width: 700px; margin: 60px auto; padding: 40px; background: var(--navy-900); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
+  html[data-theme="light"] .quiz-container { background: #fff; }
+  .question-text { font-size: 1.2rem; font-weight: 600; margin-bottom: 25px; color: var(--text-strong); }
+  .options-grid { display: grid; gap: 12px; }
+  .option-btn { background: rgba(148,163,184,0.05); border: 2px solid var(--border); padding: 15px 20px; border-radius: 8px; text-align: left; font-size: 1rem; cursor: pointer; color: var(--text-200); transition: 0.2s; }
+  .option-btn:hover { border-color: var(--emerald-500); background: rgba(16,185,129,0.05); }
+  .option-btn.correct { background: rgba(16,185,129,0.2); border-color: var(--emerald-500); color: #fff; }
+  .option-btn.incorrect { background: rgba(239,68,68,0.2); border-color: var(--red-500); color: #fff; }
+  .feedback { margin-top: 20px; padding: 15px; border-radius: 8px; display: none; }
+  .feedback.show { display: block; }
+  .feedback.success { background: rgba(16,185,129,0.1); border: 1px solid var(--emerald-500); }
+  .feedback.error { background: rgba(239,68,68,0.1); border: 1px solid var(--red-500); }
+  .quiz-progress { margin-bottom: 20px; font-size: 0.9rem; color: var(--text-muted); }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html"><span class="brand__text"><span class="brand__name">ICEBACK</span><span class="brand__sub">FOREX ACADEMY</span></span></a>
+    <nav class="primary-nav" style="margin-left:auto;"><ul class="nav-list"><li><a class="nav-link" href="courses.html">Back to Courses</a></li></ul></nav>
+  </div>
+</header>
+<main class="container">
+  <div class="quiz-container" id="quizBox">
+    <div class="quiz-progress" id="progressText"></div>
+    <div class="question-text" id="questionText"></div>
+    <div class="options-grid" id="optionsGrid"></div>
+    <div class="feedback" id="feedbackBox"></div>
+    <button class="btn btn-primary" id="nextBtn" style="margin-top:20px; display:none;" onclick="nextQuestion()">Next Question →</button>
+  </div>
+  <div class="quiz-container" id="resultBox" style="display:none; text-align:center;">
+    <h2 style="color:var(--emerald-400);">Quiz Completed!</h2>
+    <p style="font-size:1.2rem; margin:20px 0;">Your Score: <strong id="finalScore"></strong></p>
+    <a href="courses.html" class="btn btn-primary">Return to Courses</a>
+  </div>
+</main>
+<script src="quiz-data.js"></script>
+<script>
+  const urlParams = new URLSearchParams(window.location.search); const lessonId = urlParams.get('id'); const questions = quizData[lessonId];
+  let currentQ = 0; let score = 0;
+  if (!questions) { document.getElementById('quizBox').innerHTML = "<h2>No quiz found for this lesson.</h2><a href='courses.html' class='btn btn-primary'>Go Back</a>"; } else { loadQuestion(); }
+  function loadQuestion() {
+    const q = questions[currentQ];
+    document.getElementById('progressText').textContent = `Question ${currentQ + 1} of ${questions.length}`;
+    document.getElementById('questionText').textContent = q.question;
+    const grid = document.getElementById('optionsGrid'); grid.innerHTML = '';
+    document.getElementById('feedbackBox').className = 'feedback'; document.getElementById('nextBtn').style.display = 'none';
+    const letters = ['A', 'B', 'C', 'D'];
+    q.options.forEach((opt, index) => {
+      const btn = document.createElement('button'); btn.className = 'option-btn'; btn.innerHTML = `<strong>${letters[index]}.</strong> ${opt}`; btn.onclick = () => selectOption(index, btn); grid.appendChild(btn);
+    });
+  }
+  function selectOption(selectedIndex, btn) {
+    const q = questions[currentQ]; const allBtns = document.querySelectorAll('.option-btn'); allBtns.forEach(b => b.disabled = true);
+    const feedback = document.getElementById('feedbackBox');
+    if (selectedIndex === q.correct) {
+      btn.classList.add('correct'); score++; feedback.className = 'feedback success show'; feedback.innerHTML = `<strong>Correct!</strong><br>${q.explanation}`;
+    } else {
+      btn.classList.add('incorrect'); allBtns[q.correct].classList.add('correct'); feedback.className = 'feedback error show'; feedback.innerHTML = `<strong>Incorrect.</strong><br>${q.explanation}`;
+    }
+    document.getElementById('nextBtn').style.display = 'inline-flex';
+  }
+  function nextQuestion() { currentQ++; if (currentQ < questions.length) { loadQuestion(); } else { showResults(); } }
+  function showResults() {
+    document.getElementById('quizBox').style.display = 'none'; document.getElementById('resultBox').style.display = 'block';
+    document.getElementById('finalScore').textContent = `${score} / ${questions.length}`;
+    if (score === questions.length) { localStorage.setItem(`quiz_passed_${lessonId}`, 'true'); }
+  }
+</script>
+</body>
+</html>
