@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="ICEBACK FOREX ACADEMY — a premium educational platform for learning Forex." />
+<meta name="theme-color" content="#050B14" />
+<title>ICEBACK FOREX ACADEMY — Learn Forex Properly</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050B14'/%3E%3Cpath d='M20 44V20h24' stroke='%2310B981' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M44 44V28' stroke='%2334D399' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- RISK BANNER -->
+<div class="risk-banner" role="note">
+  <div class="container risk-banner__inner">
+    <span class="risk-banner__dot" aria-hidden="true"></span>
+    <p>
+      <strong>Educational platform only.</strong> Forex trading carries substantial risk and leverage can increase losses.
+      Examples, charts and simulated accounts are not financial advice and no profits are guaranteed.
+      <a href="#risk-disclaimer">Read the full disclaimer</a>
+    </p>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="ICEBACK FOREX ACADEMY — home">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 64 64" width="38" height="38"><rect width="64" height="64" rx="14" fill="#0A1422" stroke="#10B981" stroke-width="2"/><path d="M20 44V20h24" stroke="#10B981" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M44 44V28" stroke="#34D399" stroke-width="5" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand__text">
+        <span class="brand__name">ICEBACK</span>
+        <span class="brand__sub">FOREX ACADEMY</span>
+      </span>
+    </a>
+
+    <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="primary-nav" id="primaryNav" aria-label="Primary">
+      <ul class="nav-list">
+        <li><a class="nav-link is-active" href="index.html" aria-current="page">Home</a></li>
+        <li class="nav-item has-mega">
+          <button class="nav-link nav-toggle" aria-expanded="false" aria-controls="megaCourses">
+            Courses
+            <svg class="chev" width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega" id="megaCourses" hidden>
+            <div class="mega__grid">
+              <div class="mega__col">
+                <h3 class="mega__title">Foundations</h3>
+                <a href="courses.html#forex-beginner">Forex Beginner</a>
+                <a href="courses.html#candlestick-classroom">Candlesticks</a>
+                <a href="courses.html#price-action-classroom">Price Action</a>
+                <a href="courses.html#risk-management">Risk Management</a>
+              </div>
+              <div class="mega__col">
+                <h3 class="mega__title">Technical Skills</h3>
+                <a href="courses.html#indicators">Indicators</a>
+                <a href="courses.html#trading-strategies">Trading Strategies</a>
+                <a href="courses.html#smart-money-concepts">Smart Money Concepts</a>
+              </div>
+              <div class="mega__col mega__col--accent">
+                <h3 class="mega__title">Quick Access</h3>
+                <a href="courses.html">All Course Folders</a>
+                <a href="onboarding.html">Start Onboarding</a>
+                <a href="dashboard.html">Student Dashboard</a>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li><a class="nav-link" href="contact.html">Contact</a></li>
+        <li class="nav-auth">
+          <a class="btn btn-ghost btn-sm" href="login.html">Login</a>
+          <a class="btn btn-primary btn-sm" href="onboarding.html">Register</a>
+        </li>
+      </ul>
+    </nav>
+
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode">
+      <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></g></svg>
+      <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" fill="currentColor"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__glow" aria-hidden="true"></div>
+    <div class="container hero__inner">
+      <div class="hero__copy" data-reveal>
+        <span class="eyebrow"><span class="eyebrow__dot"></span> Premium Forex Education Platform</span>
+        <h1 class="hero__title">Learn the Forex market<br /><span class="text-emerald">with structure, not noise.</span></h1>
+        <p class="hero__welcome">Welcome to <strong>ICEBACK FOREX ACADEMY</strong>. Your journey to understanding the Forex market starts here.</p>
+        <p class="hero__lede">Sixteen structured course folders, an illustrated candlestick encyclopedia, a full indicator library, MT4 &amp; MT5 walkthroughs, quizzes and a simulated practice centre — all in one professional learning dashboard.</p>
+        <div class="hero__actions">
+          <a class="btn btn-primary btn-lg" href="onboarding.html">Start Learning</a>
+          <a class="btn btn-outline btn-lg" href="courses.html">Explore Courses</a>
+          <a class="btn btn-ghost btn-lg" href="courses.html#candlestick-classroom">View Candlestick Library</a>
+        </div>
+        <ul class="hero__facts">
+          <li><strong>16</strong><span>Course folders</span></li>
+          <li><strong>23</strong><span>Candlestick patterns</span></li>
+          <li><strong>15</strong><span>Indicator lessons</span></li>
+        </ul>
+      </div>
+
+      <aside class="hero__panel" data-reveal>
+        <div class="panel-card">
+          <div class="panel-card__head">
+            <span class="dot dot--red"></span><span class="dot dot--amber"></span><span class="dot dot--green"></span>
+            <span class="panel-card__title">Student Dashboard Preview</span>
+          </div>
+          <div class="panel-card__body">
+            <div class="mini-stat-row">
+              <div class="mini-stat"><span class="mini-stat__label">Lessons completed</span><span class="mini-stat__value">14<span>/ 96</span></span></div>
+              <div class="mini-stat"><span class="mini-stat__label">Avg quiz score</span><span class="mini-stat__value">78<span>%</span></span></div>
+            </div>
+            <div class="progress-block">
+              <div class="progress-block__top"><span>Forex Beginner</span><span>62%</span></div>
+              <div class="progress"><span style="width:62%"></span></div>
+            </div>
+            <div class="progress-block">
+              <div class="progress-block__top"><span>Candlestick Masterclass</span><span>41%</span></div>
+              <div class="progress"><span style="width:41%"></span></div>
+            </div>
+            <p class="panel-card__note">Sample interface. Your real progress is stored in your own account.</p>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION (Hidden Numbers, Email Form) -->
+  <section class="section contact-section" id="contact">
+    <div class="container container--narrow">
+      <div class="section-head">
+        <span class="eyebrow"><span class="eyebrow__dot"></span> Contact Us</span>
+        <h2>Get in touch with ICEBACK</h2>
+        <p>Have a question about the academy or mentorship? Send us a direct message below and we will get back to you via email.</p>
+      </div>
+
+      <div style="background: var(--navy-900); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 40px; margin-top: 30px;">
+        <form action="mailto:support@icebackforexacademy.com" method="POST" enctype="text/plain" style="display: grid; gap: 20px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="form-group" style="margin:0;">
+              <label>Your Name</label>
+              <input type="text" name="name" required placeholder="John Doe" style="width:100%; padding:12px; background:rgba(148,163,184,0.05); border:1px solid var(--border); border-radius:6px; color:var(--text-strong);">
+            </div>
+            <div class="form-group" style="margin:0;">
+              <label>Your Email</label>
+              <input type="email" name="email" required placeholder="you@example.com" style="width:100%; padding:12px; background:rgba(148,163,184,0.05); border:1px solid var(--border); border-radius:6px; color:var(--text-strong);">
+            </div>
+          </div>
+          <div class="form-group" style="margin:0;">
+            <label>Message</label>
+            <textarea name="message" required rows="5" placeholder="How can we help you?" style="width:100%; padding:12px; background:rgba(148,163,184,0.05); border:1px solid var(--border); border-radius:6px; color:var(--text-strong); font-family:inherit; resize:vertical;"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="justify-content:center; padding:14px; font-size:1rem;">Send Direct Message</button>
+        </form>
+        <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border);">
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">
+            Prefer email? Reach us directly at: <br>
+            <a href="mailto:support@icebackforexacademy.com" style="color: var(--emerald-400); font-weight: 700; font-size: 1.1rem;">support@icebackforexacademy.com</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="index.html">
+        <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 64 64" width="36" height="36"><rect width="64" height="64" rx="14" fill="#0A1422" stroke="#10B981" stroke-width="2"/><path d="M20 44V20h24" stroke="#10B981" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M44 44V28" stroke="#34D399" stroke-width="5" stroke-linecap="round"/></svg></span>
+        <span class="brand__text"><span class="brand__name">ICEBACK</span><span class="brand__sub">FOREX ACADEMY</span></span>
+      </a>
+      <p>A premium educational platform for people who want to understand the Forex market properly — with structure, illustrations, quizzes and a risk-first mindset.</p>
+      <p class="micro-note">Educational content only. No profits guaranteed.</p>
+      <p class="footer-contact">
+        <span>Contact Support:</span>
+        <a href="mailto:support@icebackforexacademy.com">support@icebackforexacademy.com</a>
+      </p>
+    </div>
+
+    <nav class="footer-col">
+      <h4>Courses</h4>
+      <a href="courses.html#forex-beginner">Forex Beginner</a>
+      <a href="courses.html#candlestick-classroom">Candlesticks</a>
+      <a href="courses.html#indicators">Indicators</a>
+      <a href="courses.html#trading-strategies">Strategies</a>
+      <a href="courses.html#risk-management">Risk Management</a>
+    </nav>
+
+    <nav class="footer-col">
+      <h4>Tools &amp; Account</h4>
+      <a href="dashboard.html">Student Dashboard</a>
+      <a href="courses.html">Course Library</a>
+      <a href="onboarding.html">Start Learning</a>
+      <a href="login.html">Login</a>
+      <a href="register.html">Register</a>
+    </nav>
+
+    <nav class="footer-col">
+      <h4>Academy</h4>
+      <a href="contact.html">Contact Us</a>
+      <a href="mailto:support@icebackforexacademy.com">Email Support</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#risk-disclaimer">Risk Disclaimer</a>
+    </nav>
+  </div>
+  <div class="container footer-bottom">
+    <p>&copy; <span id="year">2025</span> ICEBACK FOREX ACADEMY. All rights reserved.</p>
+    <p class="footer-bottom__legal">Educational platform. Trading involves substantial risk of loss. No profits are guaranteed.</p>
+  </div>
+</footer>
+
+<!-- TOASTS -->
+<div class="toast-host" id="toastHost" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  // Theme Toggle
+  var root = document.documentElement;
+  var storedTheme = null;
+  try { storedTheme = localStorage.getItem("iceback-theme"); } catch (e) {}
+  if (storedTheme === "light" || storedTheme === "dark") root.setAttribute("data-theme", storedTheme);
+
+  var themeBtn = document.getElementById("themeToggle");
+  if (themeBtn) {
+    themeBtn.addEventListener("click", function () {
+      var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("iceback-theme", next); } catch (e) {}
+    });
+  }
+
+  // Mobile Nav
+  var burger = document.getElementById("navBurger");
+  var nav = document.getElementById("primaryNav");
+  if (burger && nav) {
+    burger.addEventListener("click", function () {
+      var open = nav.classList.toggle("is-open");
+      burger.classList.toggle("is-active", open);
+      document.body.classList.toggle("nav-open", open);
+    });
+  }
+
+  // Mega Menus
+  var toggles = document.querySelectorAll(".nav-toggle");
+  function closeAll(except) {
+    Array.prototype.forEach.call(toggles, function (btn) {
+      if (btn === except) return;
+      btn.setAttribute("aria-expanded", "false");
+      var p = document.getElementById(btn.getAttribute("aria-controls"));
+      if (p) p.hidden = true;
+    });
+  }
+  Array.prototype.forEach.call(toggles, function (btn) {
+    var panel = document.getElementById(btn.getAttribute("aria-controls"));
+    if (!panel) return;
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      var isOpen = btn.getAttribute("aria-expanded") === "true";
+      closeAll(btn);
+      btn.setAttribute("aria-expanded", String(!isOpen));
+      panel.hidden = isOpen;
+    });
+  });
+  document.addEventListener("click", function (e) {
+    if (!e.target.closest(".has-mega")) closeAll(null);
+  });
+
+  // Year
+  var year = document.getElementById("year");
+  if (year) year.textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+  </html>
