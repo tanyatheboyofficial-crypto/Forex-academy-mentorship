@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson | ICEBACK</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html"><span class="brand__text"><span class="brand__name">ICEBACK</span><span class="brand__sub">FOREX ACADEMY</span></span></a>
+    <button class="nav-burger" id="navBurger"><span></span><span></span><span></span></button>
+    <nav class="primary-nav" id="primaryNav">
+      <ul class="nav-list"><li><a class="nav-link" href="courses.html">Back to Courses</a></li></ul>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <div class="lesson-layout">
+    <aside class="lesson-sidebar">
+      <h3 style="font-size:0.8rem; text-transform:uppercase; margin-bottom:16px;">Course Contents</h3>
+      <ul class="sidebar-nav" id="sidebarNav"></ul>
+    </aside>
+
+    <section class="lesson-content-area">
+      <div class="progress-container">
+        <div class="progress-text"><span id="chapterIndicator"></span><span id="percentIndicator"></span></div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+
+      <div class="lesson-body" id="lessonContent"></div>
+      
+      <div class="lesson-nav-buttons">
+        <a href="#" id="prevBtn" class="btn btn-outline">← Previous</a>
+        <button class="btn btn-primary" id="markCompleteBtn">Mark Completed</button>
+        <a href="#" id="quizBtn" class="btn btn-primary" style="background:var(--amber-400); color:#000; border-color:transparent; display:none;">Take Quiz 📝</a>
+        <a href="#" id="nextBtn" class="btn btn-primary">Next →</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script src="course-data.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const lessonId = new URLSearchParams(window.location.search).get('id');
+    let allLessons = [];
+    academyData.forEach(f => f.chapters.forEach(c => allLessons.push({ ...c, folder: f.title })));
+    
+    const idx = allLessons.findIndex(l => l.id === lessonId);
+    if (idx === -1) { document.getElementById('lessonContent').innerHTML = "<h2>Lesson not found</h2>"; return; }
+
+    const lesson = allLessons[idx];
+    document.title = `${lesson.title} | ICEBACK`;
+    document.getElementById('lessonContent').innerHTML = lesson.content;
+
+    const pct = Math.round((idx / allLessons.length) * 100);
+    document.getElementById('chapterIndicator').textContent = `Chapter ${idx + 1} of ${allLessons.length}`;
+    document.getElementById('percentIndicator').textContent = `${pct}%`;
+    document.getElementById('progressFill').style.width = `${pct}%`;
+
+    let sb = "", lastF = "";
+    allLessons.forEach(l => {
+      if (l.folder !== lastF) { sb += `<li style="margin-top:15px; font-size:0.75rem; color:var(--text-500); font-weight:700;">${l.folder}</li>`; lastF = l.folder; }
+      sb += `<li><a href="lesson.html?id=${l.id}" class="${l.id === lessonId ? 'active' : ''}">${l.title}</a></li>`;
+    });
+    document.getElementById('sidebarNav').innerHTML = sb;
+
+    if (lesson.hasQuiz) {
+      const quizBtn = document.getElementById('quizBtn');
+      quizBtn.style.display = "inline-flex";
+      quizBtn.href = `quiz.html?id=${lesson.id}`;
+    }
+
+    if (idx > 0) document.getElementById('prevBtn').href = `lesson.html?id=${allLessons[idx-1].id}`;
+    else document.getElementById('prevBtn').style.display = "none";
+
+    if (idx < allLessons.length - 1) document.getElementById('nextBtn').href = `lesson.html?id=${allLessons[idx+1].id}`;
+    else { document.getElementById('nextBtn').textContent = "Finish 🎉"; document.getElementById('nextBtn').href = "courses.html"; }
+
+    const btn = document.getElementById('markCompleteBtn');
+    if (localStorage.getItem(`completed_${lessonId}`) === 'true') { btn.textContent = "✓ Completed"; btn.classList.replace('btn-primary', 'btn-outline'); }
+    btn.addEventListener('click', () => {
+      localStorage.setItem(`completed_${lessonId}`, 'true'); btn.textContent = "✓ Completed"; btn.classList.replace('btn-primary', 'btn-outline');
+    });
+
+    const burger = document.getElementById("navBurger"); const nav = document.getElementById("primaryNav");
+    if (burger && nav) { burger.addEventListener("click", () => { nav.classList.toggle("is-open"); burger.classList.toggle("is-active"); }); }
+  });
+</script>
+</body>
+</html>
