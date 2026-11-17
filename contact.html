@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | ICEBACK</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html"><span class="brand__text"><span class="brand__name">ICEBACK</span><span class="brand__sub">FOREX ACADEMY</span></span></a>
+    <button class="nav-burger" id="navBurger"><span></span><span></span><span></span></button>
+    <nav class="primary-nav" id="primaryNav">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="index.html">Home</a></li>
+        <li><a class="nav-link" href="courses.html">Courses</a></li>
+        <li><a class="nav-link is-active" href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="page-header">
+    <div class="container">
+      <h1>Contact Us</h1>
+      <p style="color:var(--text-muted);">We are here to help you.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container container--narrow">
+      <div style="background: var(--navy-900); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 40px;">
+        
+        <div id="contactSuccess" style="display:none; text-align:center; padding: 20px; background: rgba(16,185,129,0.1); border: 1px solid var(--emerald-500); border-radius: 8px; margin-bottom: 20px;">
+          <h3 style="color: var(--emerald-400); margin-bottom: 5px;">Message Received!</h3>
+          <p style="color: var(--text-200); margin: 0;">Thank you. Our support team will reply to your email within 24 hours.</p>
+        </div>
+
+        <form id="contactForm" style="display: grid; gap: 20px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="form-group" style="margin:0;">
+              <label>Your Name</label>
+              <input type="text" id="cName" required placeholder="John Doe" style="width:100%; padding:12px; background:rgba(148,163,184,0.05); border:1px solid var(--border); border-radius:6px; color:var(--text-strong);">
+            </div>
+            <div class="form-group" style="margin:0;">
+              <label>Your Email</label>
+              <input type="email" id="cEmail" required placeholder="you@example.com" style="width:100%; padding:12px; background:rgba(148,163,184,0.05); border:1px solid var(--border); border-radius:6px; color:var(--text-strong);">
+            </div>
+          </div>
+          <div class="form-group" style="margin:0;">
+            <label>Message</label>
+            <textarea id="cMessage" required rows="5" placeholder="How can we help you?" style="width:100%; padding:12px; background:rgba(148,163,184,0.05); border:1px solid var(--border); border-radius:6px; color:var(--text-strong); font-family:inherit;"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="justify-content:center; padding:14px;">Send Direct Message</button>
+        </form>
+        
+        <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border);">
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">
+            Prefer email? Reach us directly at: <br>
+            <a href="mailto:icebackforexacademy@gmail.com" style="color: var(--emerald-400); font-weight: 700; font-size: 1.1rem;">icebackforexacademy@gmail.com</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" style="padding: 40px 0; margin-top: 40px;">
+  <div class="container" style="text-align:center;">
+    <p style="color:var(--text-500);">&copy; 2025 ICEBACK FOREX ACADEMY.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('contactSuccess').style.display = 'block';
+  });
+  const burger = document.getElementById("navBurger"); const nav = document.getElementById("primaryNav");
+  if (burger && nav) { burger.addEventListener("click", () => { nav.classList.toggle("is-open"); burger.classList.toggle("is-active"); }); }
+</script>
+</body>
+</html>
