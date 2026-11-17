@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Register | ICEBACK FOREX ACADEMY</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050B14'/%3E%3Cpath d='M20 44V20h24' stroke='%2310B981' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M44 44V28' stroke='%2334D399' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<style>
+  .auth-container { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 40px 20px; background: radial-gradient(600px 400px at 50% 0%, rgba(16,185,129,0.1), transparent 70%); }
+  .auth-card { background: var(--navy-900); border: 1px solid var(--border-strong); border-radius: var(--radius-lg); width: 100%; max-width: 420px; padding: 40px; box-shadow: var(--shadow-lg); }
+  html[data-theme="light"] .auth-card { background: #fff; }
+  .auth-card h2 { text-align: center; margin-bottom: 8px; color: var(--text-strong); }
+  .auth-card p { text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 30px; }
+  .form-group { margin-bottom: 20px; }
+  .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; color: var(--text-200); }
+  .form-group input { width: 100%; padding: 12px 16px; background: rgba(148, 163, 184, 0.05); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-strong); transition: border 0.2s; }
+  .form-group input:focus { outline: none; border-color: var(--emerald-500); background: rgba(16, 185, 129, 0.05); }
+  .auth-links { text-align: center; margin-top: 24px; font-size: 0.85rem; color: var(--text-muted); }
+  .auth-links a { color: var(--emerald-400); font-weight: 600; text-decoration: none; }
+  .auth-links a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+  <div class="auth-container">
+    <div class="auth-card">
+      <h2>Create an Account</h2>
+      <p>Join ICEBACK FOREX ACADEMY</p>
+      <form id="registerForm">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="regName" required placeholder="John Doe" />
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="regEmail" required placeholder="you@example.com" />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="regPassword" required placeholder="••••••••" minlength="6" />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+      </form>
+      <div class="auth-links">
+        Already have an account? <a href="login.html">Log in here</a>
+      </div>
+    </div>
+  </div>
+  
+  <script src="auth.js"></script>
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = document.getElementById("regName").value;
+      const email = document.getElementById("regEmail").value;
+      const pass = document.getElementById("regPassword").value;
+      
+      if (window.icebackAuth) {
+        window.icebackAuth.register(name, email, pass);
+      }
+    });
+  </script>
+</body>
+</html>
