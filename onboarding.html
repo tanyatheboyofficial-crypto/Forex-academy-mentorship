@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome | ICEBACK</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .onboard-wrapper { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: radial-gradient(800px 500px at 50% 0%, rgba(16,185,129,0.1), transparent 70%); padding: 20px; }
+  .onboard-card { background: var(--navy-900); border: 1px solid var(--border-strong); border-radius: var(--radius-lg); width: 100%; max-width: 550px; padding: 40px; box-shadow: var(--shadow-lg); }
+  html[data-theme="light"] .onboard-card { background: #fff; }
+  .step-indicator { display: flex; gap: 8px; margin-bottom: 30px; }
+  .step-dot { flex: 1; height: 4px; background: var(--border); border-radius: 2px; transition: 0.3s; }
+  .step-dot.active { background: var(--emerald-500); }
+  .step { display: none; animation: fadeIn 0.4s ease forwards; }
+  .step.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .step h2 { color: var(--emerald-400); margin-bottom: 10px; font-size: 1.5rem; }
+  .step p { color: var(--text-300); font-size: 0.95rem; margin-bottom: 25px; }
+  .captcha-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
+  .captcha-item { background: var(--navy-800); border: 2px solid var(--border); border-radius: 8px; padding: 20px; text-align: center; font-size: 2.5rem; cursor: pointer; transition: 0.2s; user-select: none; }
+  .captcha-item:hover { border-color: var(--emerald-500); }
+  .captcha-item.selected { border-color: var(--emerald-500); background: rgba(16,185,129,0.15); }
+  .voice-box { background: var(--navy-800); border: 1px solid var(--border); padding: 25px; border-radius: 12px; text-align: center; margin-bottom: 20px; }
+  .voice-btn { background: var(--emerald-500); color: #04121F; border: none; padding: 15px 30px; font-size: 1.1rem; font-weight: 700; border-radius: 999px; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; transition: 0.2s; margin-bottom: 15px;}
+  .voice-btn:hover { transform: scale(1.05); }
+  .form-group { margin-bottom: 20px; text-align: left; }
+  .form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--text-200); font-size: 0.9rem;}
+  .form-group input, .form-group select { width: 100%; padding: 12px 16px; background: rgba(148,163,184,0.05); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-strong); font-size: 1rem; }
+  .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--emerald-500); }
+  .btn-next { width: 100%; padding: 14px; font-size: 1rem; font-weight: 700; background: var(--emerald-500); color: #04121F; border: none; border-radius: var(--radius-sm); cursor: pointer; transition: 0.2s; margin-top: 10px;}
+  .btn-next:hover { background: var(--emerald-400); }
+  .error-msg { color: var(--red-500); font-size: 0.85rem; margin-top: 10px; display: none; }
+</style>
+</head>
+<body>
+<div class="onboard-wrapper">
+  <div class="onboard-card">
+    <div class="step-indicator"><div class="step-dot active" id="dot1"></div><div class="step-dot" id="dot2"></div><div class="step-dot" id="dot3"></div></div>
+    <div class="step active" id="step1">
+      <h2>Welcome to ICEBACK FOREX ACADEMY</h2>
+      <p>Before we begin, please verify you are not a robot. <strong>Select all 3 cars</strong> below.</p>
+      <div class="captcha-grid" id="captchaGrid"></div>
+      <p class="error-msg" id="error1">Please select exactly the 3 cars to continue.</p>
+      <button class="btn-next" onclick="verifyCaptcha()">Verify & Continue</button>
+    </div>
+    <div class="step" id="step2">
+      <h2>Audio Verification</h2>
+      <p>Tap the button below to hear a 4-digit security code. Type what you hear.</p>
+      <div class="voice-box">
+        <button class="voice-btn" id="playVoiceBtn" onclick="playVoice()">🔊 Play Audio Code</button>
+        <div style="font-size: 0.8rem; color: var(--text-500); margin-bottom: 15px;">(Turn volume up)</div>
+        <input type="number" id="voiceInput" placeholder="Enter code" style="width: 100%; padding: 15px; font-size: 1.5rem; text-align: center; letter-spacing: 5px; background: rgba(148,163,184,0.05); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-strong); font-family: monospace;">
+      </div>
+      <p class="error-msg" id="error2">Incorrect code. Please listen again.</p>
+      <button class="btn-next" onclick="verifyVoice()">Verify Code</button>
+    </div>
+    <div class="step" id="step3">
+      <h2>Let's Personalize Your Journey</h2>
+      <div class="form-group"><label>1. How old are you?</label><input type="number" id="ageInput" placeholder="e.g. 24" min="10" max="100"></div>
+      <div class="form-group"><label>2. Are you currently a Forex trader?</label>
+        <select id="traderStatus"><option value="beginner">No, I am a complete beginner.</option><option value="learning">I am learning, but haven't traded yet.</option><option value="active">Yes, I trade part-time or full-time.</option></select>
+      </div>
+      <div class="form-group"><label>3. Do you know what a "Pip" is in Forex?</label>
+        <select id="pipStatus"><option value="no">No, I have no idea.</option><option value="yes">Yes, it's a unit of price movement.</option></select>
+      </div>
+      <button class="btn-next" onclick="finishOnboarding()">Finish Setup & Register</button>
+    </div>
+  </div>
+</div>
+<script>
+  const items = [{ icon: '🍎', isCar: false }, { icon: '🚗', isCar: true }, { icon: '🏠', isCar: false }, { icon: '🚕', isCar: true }, { icon: '🍌', isCar: false }, { icon: '🚙', isCar: true }];
+  document.addEventListener("DOMContentLoaded", () => {
+    const grid = document.getElementById('captchaGrid');
+    items.sort(() => Math.random() - 0.5).forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'captcha-item'; div.innerHTML = item.icon; div.dataset.isCar = item.isCar; div.onclick = () => { div.classList.toggle('selected'); };
+      grid.appendChild(div);
+    });
+  });
+  function verifyCaptcha() {
+    const selectedElements = Array.from(document.querySelectorAll('.captcha-item.selected'));
+    const selectedCars = selectedElements.filter(el => el.dataset.isCar === 'true').length;
+    const selectedNonCars = selectedElements.filter(el => el.dataset.isCar === 'false').length;
+    if (selectedCars === 3 && selectedNonCars === 0) { goToStep(2); } else { document.getElementById('error1').style.display = 'block'; setTimeout(() => document.getElementById('error1').style.display = 'none', 3000); }
+  }
+  let generatedCode = "";
+  function playVoice() {
+    const btn = document.getElementById('playVoiceBtn'); btn.innerHTML = "🔊 Speaking...";
+    generatedCode = Math.floor(1000 + Math.random() * 9000).toString();
+    const msg = new SpeechSynthesisUtterance(`Your code is ${generatedCode.split('').join(' ')}`);
+    msg.rate = 0.9; msg.onend = () => { btn.innerHTML = "🔊 Play Audio Again"; };
+    window.speechSynthesis.speak(msg);
+  }
+  function verifyVoice() {
+    const input = document.getElementById('voiceInput').value;
+    if (input === generatedCode) { goToStep(3); } else { document.getElementById('error2').style.display = 'block'; document.getElementById('voiceInput').value = ''; setTimeout(() => document.getElementById('error2').style.display = 'none', 3000); }
+  }
+  function goToStep(stepNum) {
+    document.querySelectorAll('.step').forEach(el => el.classList.remove('active')); document.querySelectorAll('.step-dot').forEach(el => el.classList.remove('active'));
+    document.getElementById(`step${stepNum}`).classList.add('active'); for(let i=1; i<=stepNum; i++) { document.getElementById(`dot${i}`).classList.add('active'); }
+  }
+  function finishOnboarding() {
+    const age = document.getElementById('ageInput').value; const trader = document.getElementById('traderStatus').value; const knowsPip = document.getElementById('pipStatus').value;
+    if (!age || age < 10) { alert("Please enter a valid age."); return; }
+    let recommendedStart = "forex-beginner"; let message = "Based on your answers, we recommend starting at Folder 1: Forex Beginner Classroom!";
+    if (trader === 'active' && knowsPip === 'yes') { recommendedStart = "price-action-classroom"; message = "Since you have experience, we recommend jumping straight into Price Action!"; } 
+    else if (trader === 'learning' && knowsPip === 'yes') { recommendedStart = "candlestick-classroom"; message = "Great! We recommend starting with the Candlestick Masterclass."; }
+    localStorage.setItem('iceback_profile', JSON.stringify({ age, trader, knowsPip, recommendedStart }));
+    alert(`Profile Complete!\n\n${message}\n\nYou will now be redirected to create your account.`);
+    window.location.href = "register.html";
+  }
+</script>
+</body>
+</html>
