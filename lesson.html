@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lesson | ICEBACK FOREX ACADEMY</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050B14'/%3E%3Cpath d='M20 44V20h24' stroke='%2310B981' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M44 44V28' stroke='%2334D399' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<style>
+  .lesson-layout { display: grid; grid-template-columns: 300px 1fr; gap: 40px; padding: 40px 0; }
+  @media (max-width: 900px) { .lesson-layout { grid-template-columns: 1fr; } }
+  
+  .lesson-sidebar { background: var(--navy-900); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; height: fit-content; position: sticky; top: 100px; }
+  html[data-theme="light"] .lesson-sidebar { background: #fff; }
+  .sidebar-nav { list-style: none; padding: 0; margin: 0; max-height: 70vh; overflow-y: auto; }
+  .sidebar-nav li { margin-bottom: 6px; }
+  .sidebar-nav a { color: var(--text-muted); font-size: 0.85rem; text-decoration: none; display: block; padding: 10px 12px; border-radius: 6px; transition: all 0.2s;}
+  .sidebar-nav a:hover, .sidebar-nav a.active { background: rgba(16,185,129,0.1); color: var(--emerald-400); font-weight: 600;}
+  
+  .lesson-content-area { background: var(--navy-900); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 40px; position: relative; }
+  html[data-theme="light"] .lesson-content-area { background: #fff; }
+  
+  /* Progress Bar */
+  .progress-container { margin-bottom: 30px; }
+  .progress-text { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px; }
+  .progress-bar { width: 100%; height: 8px; background: rgba(148, 163, 184, 0.1); border-radius: 4px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--emerald-500); width: 0%; transition: width 0.5s ease; }
+
+  /* Content Styling */
+  .lesson-body h2 { margin-top: 0; font-size: 2rem; color: var(--text-strong); border-bottom: 1px solid var(--border); padding-bottom: 15px; margin-bottom: 25px; }
+  .lesson-body h3 { margin-top: 35px; font-size: 1.3rem; color: var(--emerald-400); }
+  .lesson-body p { color: var(--text-200); line-height: 1.8; margin-bottom: 18px; font-size: 1.05rem; }
+  .lesson-body ul, .lesson-body ol { color: var(--text-200); line-height: 1.8; margin-bottom: 24px; padding-left: 20px; font-size: 1.05rem; }
+  .lesson-body li { margin-bottom: 10px; }
+  .lesson-body strong { color: var(--text-strong); font-weight: 700; }
+  .lesson-body .notice { font-size: 0.95rem; }
+  
+  /* SVG Diagram Container */
+  .diagram-container { background: #050B14; border: 1px solid var(--border-strong); border-radius: 12px; padding: 20px; margin: 30px 0; text-align: center; }
+  .diagram-container svg { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+  .diagram-caption { font-size: 0.85rem; color: var(--text-muted); margin-top: 15px; font-style: italic; }
+
+  /* Bottom Navigation */
+  .lesson-nav-buttons { display: flex; justify-content: space-between; align-items: center; margin-top: 50px; padding-top: 30px; border-top: 1px solid var(--border); gap: 15px; flex-wrap: wrap; }
+  .btn-nav { display: flex; align-items: center; gap: 8px; }
+  @media (max-width: 600px) { .lesson-nav-buttons { flex-direction: column; } .btn-nav { width: 100%; justify-content: center; } }
+</style>
+</head>
+<body>
+
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 64 64" width="38" height="38"><rect width="64" height="64" rx="14" fill="#0A1422" stroke="#10B981" stroke-width="2"/><path d="M20 44V20h24" stroke="#10B981" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M44 44V28" stroke="#34D399" stroke-width="5" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand__text"><span class="brand__name">ICEBACK</span><span class="brand__sub">FOREX ACADEMY</span></span>
+    </a>
+    <nav class="primary-nav" id="primaryNav">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="index.html">Home</a></li>
+        <li><a class="nav-link is-active" href="courses.html">Back to Courses</a></li>
+        <li class="nav-auth"><a class="btn btn-ghost btn-sm" href="dashboard.html">Dashboard</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <div class="lesson-layout">
+    <aside class="lesson-sidebar">
+      <h3 style="font-size:0.8rem; text-transform:uppercase; color:var(--text-500); margin-bottom:16px; letter-spacing:0.1em;">Course Contents</h3>
+      <ul class="sidebar-nav" id="sidebarNav"></ul>
+    </aside>
+
+    <section class="lesson-content-area">
+      
+      <!-- Progress Bar -->
+      <div class="progress-container">
+        <div class="progress-text">
+          <span id="chapterIndicator">Loading...</span>
+          <span id="percentIndicator">0%</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+
+      <div class="lesson-body" id="lessonContent"></div>
+      
+      <div class="lesson-nav-buttons">
+        <a href="#" id="prevBtn" class="btn btn-outline btn-nav">← Previous Chapter</a>
+        <button class="btn btn-primary btn-nav" id="markCompleteBtn">Mark as Completed</button>
+        <a href="#" id="nextBtn" class="btn btn-primary btn-nav" style="background:var(--navy-800); color:var(--text-strong); border-color:var(--border);">Next Chapter →</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer" style="padding: 20px 0; margin-top: 40px;">
+  <div class="container footer-bottom" style="border:none; padding:0; text-align:center;">
+    <p>ICEBACK FOREX ACADEMY. Educational purposes only. No profits guaranteed.</p>
+    <p style="font-size:0.8rem; color:var(--text-500);">Support: +263 78 837 7887 / +263 78 884 8481</p>
+  </div>
+</footer>
+
+<script src="course-data.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const lessonId = urlParams.get('id');
+
+    // 1. Flatten the curriculum to find indices
+    let allLessons = [];
+    academyData.forEach(folder => {
+      folder.chapters.forEach(chapter => {
+        allLessons.push({ ...chapter, folderTitle: folder.title });
+      });
+    });
+
+    const currentIndex = allLessons.findIndex(l => l.id === lessonId);
+
+    if (currentIndex === -1) {
+      document.getElementById('lessonContent').innerHTML = "<h2>Lesson not found</h2><p>Please return to the course library.</p>";
+      return;
+    }
+
+    const lesson = allLessons[currentIndex];
+    const prevLesson = currentIndex > 0 ? allLessons[currentIndex - 1] : null;
+    const nextLesson = currentIndex < allLessons.length - 1 ? allLessons[currentIndex + 1] : null;
+
+    // 2. Set Content
+    document.title = `${lesson.title} | ICEBACK FOREX ACADEMY`;
+    document.getElementById('lessonContent').innerHTML = lesson.content;
+
+    // 3. Set Progress Bar
+    const progressPercent = Math.round(((currentIndex) / allLessons.length) * 100);
+    document.getElementById('chapterIndicator').textContent = `Chapter ${currentIndex + 1} of ${allLessons.length}`;
+    document.getElementById('percentIndicator').textContent = `${progressPercent}% Complete`;
+    document.getElementById('progressFill').style.width = `${progressPercent}%`;
+
+    // 4. Setup Sidebar
+    let sidebarHTML = "";
+    let lastFolder = "";
+    allLessons.forEach((l, idx) => {
+      if (l.folderTitle !== lastFolder) {
+        sidebarHTML += `<li style="margin-top:15px; font-size:0.75rem; text-transform:uppercase; color:var(--text-500); font-weight:700; padding-left:12px;">${l.folderTitle}</li>`;
+        lastFolder = l.folderTitle;
+      }
+      const isActive = l.id === lessonId;
+      sidebarHTML += `<li><a href="lesson.html?id=${l.id}" class="${isActive ? 'active' : ''}">${l.title}</a></li>`;
+    });
+    document.getElementById('sidebarNav').innerHTML = sidebarHTML;
+
+    // 5. Setup Prev/Next Buttons
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    if (prevLesson) {
+      prevBtn.href = `lesson.html?id=${prevLesson.id}`;
+      prevBtn.style.opacity = "1";
+    } else {
+      prevBtn.style.display = "none";
+    }
+
+    if (nextLesson) {
+      nextBtn.href = `lesson.html?id=${nextLesson.id}`;
+      nextBtn.style.background = "var(--emerald-500)";
+      nextBtn.style.color = "#04121F";
+      nextBtn.style.borderColor = "transparent";
+    } else {
+      nextBtn.textContent = "Finish Course 🎉";
+      nextBtn.href = "courses.html";
+    }
+
+    // 6. Mark as Complete Logic
+    const completeBtn = document.getElementById('markCompleteBtn');
+    const completedKey = `completed_${lessonId}`;
+    
+    if (localStorage.getItem(completedKey) === 'true') {
+      completeBtn.textContent = "✓ Completed";
+      completeBtn.classList.replace('btn-primary', 'btn-outline');
+      completeBtn.style.color = "var(--emerald-400)";
+    }
+
+    completeBtn.addEventListener('click', () => {
+      localStorage.setItem(completedKey, 'true');
+      completeBtn.textContent = "✓ Completed";
+      completeBtn.classList.replace('btn-primary', 'btn-outline');
+      completeBtn.style.color = "var(--emerald-400)";
+    });
+
+    window.scrollTo(0, 0);
+  });
+</script>
+</body>
+  </html>
