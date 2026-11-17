@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard | ICEBACK</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html"><span class="brand__text"><span class="brand__name">ICEBACK</span><span class="brand__sub">FOREX ACADEMY</span></span></a>
+    <button class="nav-burger" id="navBurger"><span></span><span></span><span></span></button>
+    <nav class="primary-nav" id="primaryNav">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="courses.html">Courses</a></li>
+        <li><button class="btn btn-ghost btn-sm" onclick="window.icebackAuth.logout()">Logout</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <div style="padding: 40px 0 20px;">
+    <h1>Welcome, <span id="studentName" style="color:var(--emerald-400);">Student</span></h1>
+    <p style="color:var(--text-muted);">Track your progress below.</p>
+  </div>
+
+  <div class="dash-grid">
+    <div style="display:flex; flex-direction:column; gap:20px;">
+      <div class="dash-card" style="border-color: var(--emerald-500); background: rgba(16,185,129,0.05);">
+        <h3 style="color: var(--emerald-400); margin-bottom: 10px;">Your Recommended Path</h3>
+        <p id="recommendationText" style="font-size: 1rem; color: var(--text-200);">Loading...</p>
+        <a href="#" id="recommendationLink" class="btn btn-primary btn-sm" style="margin-top: 15px; align-self:flex-start;">Start Here</a>
+      </div>
+      <div class="dash-card">
+        <h3>Completed Lessons</h3>
+        <div id="progressList"></div>
+        <a href="courses.html" class="btn btn-outline" style="margin-top:20px;">View All Courses</a>
+      </div>
+    </div>
+    <div class="dash-card">
+      <h3>Support</h3>
+      <p style="font-size:0.85rem;">Need help? Reach out to us.</p>
+      <p style="font-size:0.85rem;"><a href="mailto:icebackforexacademy@gmail.com" style="color:var(--emerald-400);">icebackforexacademy@gmail.com</a></p>
+    </div>
+  </div>
+</main>
+
+<script src="auth.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const user = window.icebackAuth.getUser();
+    if (!user) { window.location.href = "login.html"; return; }
+    document.getElementById('studentName').textContent = user.name;
+
+    const list = document.getElementById('progressList');
+    const keys = Object.keys(localStorage).filter(k => k.startsWith('completed_') && localStorage.getItem(k) === 'true');
+    if (keys.length === 0) {
+      list.innerHTML = "<p style='color:var(--text-muted); font-size:0.9rem;'>No lessons completed yet.</p>";
+    } else {
+      let html = '<ul class="completed-list">';
+      keys.forEach(k => { html += `<li style="padding:10px 0; border-bottom:1px solid var(--border); font-size:0.9rem;">✓ ${k.replace('completed_','').replace(/-/g,' ')}</li>`; });
+      html += '</ul>'; list.innerHTML = html;
+    }
+
+    const profile = JSON.parse(localStorage.getItem('iceback_profile'));
+    const recText = document.getElementById('recommendationText');
+    const recLink = document.getElementById('recommendationLink');
+
+    if (profile) {
+      let startFolder = "forex-beginner"; let text = "Based on your onboarding, you are a beginner. Start with Folder 1.";
+      if (profile.trader === 'active' && profile.knowsPip === 'yes') { startFolder = "price-action-classroom"; text = "You have trading experience! We recommend Price Action."; }
+      else if (profile.trader === 'learning' && profile.knowsPip === 'yes') { startFolder = "candlestick-classroom"; text = "We recommend the Candlestick Masterclass to perfect your chart reading."; }
+      recText.textContent = text; recLink.href = `courses.html#${startFolder}`;
+    } else {
+      recText.textContent = "Start from the very beginning with the Forex Beginner Classroom."; recLink.href = "courses.html#forex-beginner";
+    }
+
+    const burger = document.getElementById("navBurger"); const nav = document.getElementById("primaryNav");
+    if (burger && nav) { burger.addEventListener("click", () => { nav.classList.toggle("is-open"); burger.classList.toggle("is-active"); }); }
+  });
+</script>
+</body>
+</html>
