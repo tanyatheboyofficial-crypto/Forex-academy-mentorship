@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#050B14" />
+<title>Lesson | ICEBACK FOREX ACADEMY</title>
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050B14'/%3E%3Cpath d='M20 44V20h24' stroke='%2310B981' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M44 44V28' stroke='%2334D399' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+
+<style>
+  .lesson-layout { display: grid; grid-template-columns: 280px 1fr; gap: 40px; padding: 40px 0; }
+  @media (max-width: 900px) { .lesson-layout { grid-template-columns: 1fr; } }
+  
+  .lesson-sidebar {
+    background: var(--navy-900); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: 24px;
+    height: fit-content; position: sticky; top: 100px;
+  }
+  html[data-theme="light"] .lesson-sidebar { background: #fff; }
+  .sidebar-nav { list-style: none; padding: 0; margin: 0; }
+  .sidebar-nav li { margin-bottom: 10px; }
+  .sidebar-nav a { color: var(--text-muted); font-size: 0.85rem; text-decoration: none; display: block; padding: 8px 12px; border-radius: 6px; transition: all 0.2s;}
+  .sidebar-nav a:hover, .sidebar-nav a.active { background: rgba(16,185,129,0.1); color: var(--emerald-400); font-weight: 600;}
+  
+  .lesson-content-area {
+    background: var(--navy-900); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: 40px;
+  }
+  html[data-theme="light"] .lesson-content-area { background: #fff; }
+  
+  .lesson-body h2 { margin-top: 0; font-size: 1.8rem; color: var(--emerald-400); }
+  .lesson-body h3 { margin-top: 32px; font-size: 1.25rem; color: var(--text-strong); }
+  .lesson-body p { color: var(--text-200); line-height: 1.8; margin-bottom: 16px; }
+  .lesson-body ul, .lesson-body ol { color: var(--text-200); line-height: 1.8; margin-bottom: 20px; padding-left: 20px; }
+  .lesson-body li { margin-bottom: 8px; }
+  .lesson-body strong { color: var(--text-strong); }
+
+  .lesson-nav-buttons {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 64 64" width="38" height="38">
+          <rect width="64" height="64" rx="14" fill="#0A1422" stroke="#10B981" stroke-width="2"/>
+          <path d="M20 44V20h24" stroke="#10B981" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M44 44V28" stroke="#34D399" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="brand__text">
+        <span class="brand__name">ICEBACK</span>
+        <span class="brand__sub">FOREX ACADEMY</span>
+      </span>
+    </a>
+
+    <button class="nav-burger" id="navBurger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="primary-nav" id="primaryNav">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="index.html">Home</a></li>
+        <li><a class="nav-link is-active" href="courses.html">Back to Courses</a></li>
+        <li class="nav-auth">
+          <a class="btn btn-ghost btn-sm" href="login.html">Login</a>
+          <a class="btn btn-primary btn-sm" href="register.html">Register</a>
+        </li>
+      </ul>
+    </nav>
+
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></g></svg>
+      <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" fill="currentColor"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="container">
+  <div class="lesson-layout">
+    
+    <aside class="lesson-sidebar">
+      <h3 style="font-size:0.8rem; text-transform:uppercase; color:var(--text-500); margin-bottom:16px; letter-spacing:0.1em;">Course Contents</h3>
+      <ul class="sidebar-nav" id="sidebarNav">
+        <!-- JS populates this -->
+      </ul>
+    </aside>
+
+    <section class="lesson-content-area">
+      <div class="lesson-body" id="lessonContent">
+        <!-- JS populates this -->
+      </div>
+      
+      <div class="lesson-nav-buttons">
+        <a href="courses.html" class="btn btn-outline">← Back to Library</a>
+        <button class="btn btn-primary" id="markCompleteBtn">Mark as Completed</button>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer" style="padding: 20px 0; margin-top: 40px;">
+  <div class="container footer-bottom" style="border:none; padding:0;">
+    <p>&copy; 2025 ICEBACK FOREX ACADEMY. Educational purposes only.</p>
+    <p>Call/WhatsApp: <a href="tel:+263788377887" style="color:var(--emerald-400);">+263 78 837 7887</a></p>
+  </div>
+</footer>
+
+<script src="course-data.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const lessonId = urlParams.get('id');
+
+    if (!lessonId) {
+      document.getElementById('lessonContent').innerHTML = "<h2>Lesson not found</h2><p>Please select a lesson from the courses page.</p>";
+      return;
+    }
+
+    let foundLesson = null;
+    let sidebarHTML = "";
+
+    academyData.forEach(folder => {
+      folder.chapters.forEach(chapter => {
+        const isActive = chapter.id === lessonId;
+        sidebarHTML += `<li><a href="lesson.html?id=${chapter.id}" class="${isActive ? 'active' : ''}">${chapter.title}</a></li>`;
+        if (isActive) foundLesson = chapter;
+      });
+    });
+
+    if (foundLesson) {
+      document.title = `${foundLesson.title} | ICEBACK FOREX ACADEMY`;
+      document.getElementById('lessonContent').innerHTML = foundLesson.content;
+      document.getElementById('sidebarNav').innerHTML = sidebarHTML;
+
+      // Mark complete logic (LocalStorage)
+      const completeBtn = document.getElementById('markCompleteBtn');
+      const completedKey = `completed_${lessonId}`;
+      
+      if (localStorage.getItem(completedKey) === 'true') {
+        completeBtn.textContent = "✓ Completed";
+        completeBtn.classList.remove('btn-primary');
+        completeBtn.classList.add('btn-outline');
+        completeBtn.style.color = "var(--emerald-400)";
+      }
+
+      completeBtn.addEventListener('click', () => {
+        localStorage.setItem(completedKey, 'true');
+        completeBtn.textContent = "✓ Completed";
+        completeBtn.classList.remove('btn-primary');
+        completeBtn.classList.add('btn-outline');
+        completeBtn.style.color = "var(--emerald-400)";
+      });
+      window.scrollTo(0, 0);
+    } else {
+      document.getElementById('lessonContent').innerHTML = "<h2>Lesson not found</h2>";
+    }
+  });
+
+  // Theme & Mobile Nav Logic
+  var root = document.documentElement;
+  var themeBtn = document.getElementById("themeToggle");
+  if (themeBtn) {
+    themeBtn.addEventListener("click", function () {
+      var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("iceback-theme", next); } catch (e) {}
+    });
+  }
+
+  var burger = document.getElementById("navBurger");
+  var nav = document.getElementById("primaryNav");
+  if (burger && nav) {
+    burger.addEventListener("click", function () {
+      var open = nav.classList.toggle("is-open");
+      burger.classList.toggle("is-active", open);
+      document.body.classList.toggle("nav-open", open);
+    });
+  }
+</script>
+</body>
+</html>
